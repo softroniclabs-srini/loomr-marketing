@@ -12,9 +12,17 @@
 const isStatic = (process.env.BUILD_TARGET ?? 'static') === 'static';
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
+/**
+ * Route handlers are named `route.node.ts` and only registered when `node.ts`
+ * is in pageExtensions. That keeps /api/waitlist out of the static export,
+ * which has no compute to run it, without duplicating the file.
+ */
+const pageExtensions = ['tsx', 'ts', ...(isStatic ? [] : ['node.ts'])];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  pageExtensions,
   ...(isStatic
     ? {
         output: 'export',

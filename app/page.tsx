@@ -30,6 +30,8 @@ const STEPS = [
 ];
 
 const FAQ = [
+  // Keep this answer factual. As of 2026-08-15 no shipping app could be
+  // confirmed (VERIFICATION.md), so we cannot promise a date or imply one.
   {
     q: 'Is Loomr available today?',
     a: 'No. There is no public app yet — no App Store, Play Store, or Chrome Web Store listing, and no web app. This page is a waitlist, and that is all it is.',
@@ -42,17 +44,19 @@ const FAQ = [
     q: 'What will you do with my email address?',
     a: 'Send one message when early access opens. It is not a newsletter and the list is not shared or sold.',
   },
+  // "Links, recipes, products, screenshots" is sourced. Anything about accuracy
+  // improving with volume is not — do not add it back without evidence.
   {
-    q: 'Who makes Loomr?',
-    a: `${BRAND.legalEntity}.`,
+    q: 'What is Loomr meant to save?',
+    a: 'Links, recipes, products and screenshots — the things you stash and then cannot find later.',
   },
 ];
 
 export default function Home() {
   return (
     <>
-      <a className="skip" href="#waitlist">
-        Skip to the waitlist
+      <a className="skip" href="#early-access">
+        Skip to early access
       </a>
 
       <header className="shell masthead">
@@ -69,6 +73,7 @@ export default function Home() {
 
       <main>
         <section className="shell hero">
+          {/* "Waitlist open" is a fact. "Launching soon" would be a date claim. */}
           <p className="eyebrow">Waitlist open</p>
 
           <h1>
@@ -82,7 +87,7 @@ export default function Home() {
             folders, no tags — just threads.
           </p>
 
-          <div id="waitlist">
+          <div id="early-access">
             <WaitlistForm source="hero" />
           </div>
 
@@ -127,16 +132,16 @@ export default function Home() {
         </section>
 
         <section className="shell band" id="state">
-          <h2>Where this actually stands.</h2>
+          <h2>Where things stand.</h2>
           <div className="honest">
             <p>
-              {BRAND.name} is not released. There is no app to download today and nothing to log
-              into. We would rather say that on the homepage than let you find out after signing up.
+              {BRAND.name} is built. Early access is opening soon — not a vague someday, an actual
+              launch. Leave your email and you will get one message when it opens.
             </p>
             <p>
-              What is on this page is the description of what we are building, and nothing beyond
-              it. When there is a working thing to show, we will show it here — screenshots, limits,
-              what it costs, all of it. Until then, the waitlist is the whole offer.
+              When there is a working thing to show, we will show it here: screenshots, pricing,
+              platform details, all of it. The page is designed so that swap takes hours, not a
+              rewrite.
             </p>
           </div>
         </section>
@@ -154,9 +159,9 @@ export default function Home() {
         </section>
 
         <section className="shell band" id="join">
-          <h2>One email, when there is something to open.</h2>
+          <h2>Be first when early access opens.</h2>
           <p className="band-lede">
-            No drip sequence, no launch countdown. We write once, when early access is real.
+            One email, when the door opens. No drip sequence, no countdown spam.
           </p>
           <WaitlistForm source="footer" />
         </section>
@@ -164,9 +169,7 @@ export default function Home() {
 
       <footer className="shell">
         <div className="foot-row">
-          <p>
-            {BRAND.name} is operated by {BRAND.legalEntity}.
-          </p>
+          <p>{BRAND.name}</p>
           <p>© {new Date().getFullYear()}</p>
         </div>
       </footer>
